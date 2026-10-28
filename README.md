@@ -150,3 +150,14 @@ Made by Jay E from RoboLabs. Learn more at [RoboNuggets](https://robonuggets.com
 <p align="center">
   <img src="assets/hex.svg" alt="RoboNuggets hex mark" width="48">
 </p>
+
+## Fuzzy Logic Yetis fork
+
+Fork of [robonuggets/ribbon](https://github.com/robonuggets/ribbon) (MIT, original author Jay E). Changes:
+
+- Model prices live in `hooks/pricing.ts` instead of `hooks/cache-art.ts`. A price change touches that one file.
+- Sonnet cache-read rate corrected to the Sonnet 5.5 price ($0.10 per million tokens).
+- The marketplace is named `fly-ribbon`, so it does not collide with the upstream `robonuggets` marketplace.
+
+Install: `claude plugin marketplace add Fuzzy-Logic-Yetis/ribbon`, then `claude plugin install ribbon@fly-ribbon`.
+Prices are estimates; see `PRICES_AS_OF` in `hooks/pricing.ts`.

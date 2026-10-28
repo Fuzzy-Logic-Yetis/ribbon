@@ -2,6 +2,7 @@
 // hands to Svg. Nothing here touches the engine.
 
 import { SANS } from './font'
+import { PRICING } from './pricing'
 
 export type Mode = 'warm' | 'cold'
 export type Kind = 'wide' | 'stacked' | 'tight'
@@ -40,16 +41,9 @@ export const kindOf = (columns: number): Kind => (columns >= WIDE_AT ? 'wide' : 
  */
 export const bandPx = (columns: number): number => (columns + 5) * 12
 
-// $ per million tokens: input, and the cache read. The 1-hour cache write is 2 times
-// input. Haiku 5.5 is $0.10 up to 100K tokens and $0.50 above; long sessions use the
-// higher rate.
+// Prices live in ./pricing, so a rate change never touches this file.
 export type Model = { id: string; NAME: string; input: number; read: number }
-export const MODELS: Model[] = [
-  { id: 'fable', NAME: 'FABLE', input: 10, read: 0.25 },
-  { id: 'opus', NAME: 'OPUS', input: 4, read: 0.2 },
-  { id: 'sonnet', NAME: 'SONNET', input: 2, read: 0.2 },
-  { id: 'haiku', NAME: 'HAIKU', input: 0.5, read: 0.05 },
-]
+export const MODELS: Model[] = PRICING.map(p => ({ id: p.id, NAME: p.name, input: p.input, read: p.read }))
 
 /** Which row of MODELS a model id belongs to, or null for one the card doesn't price. */
 export const familyOf = (model: string | null | undefined): string | null => {
